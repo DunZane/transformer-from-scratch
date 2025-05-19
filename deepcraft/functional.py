@@ -5,7 +5,6 @@ from typing import Optional, TYPE_CHECKING
 import torch
 from torch import Tensor
 
-
 if TYPE_CHECKING:
     from torch.types import _dtype as DType
 else:
@@ -39,3 +38,11 @@ def _canonical_mask(
                 mask, float("-inf")
             )
     return mask
+
+
+def _none_or_dtype(input: Optional[Tensor]) -> Optional[DType]:
+    if input is not None:
+        return None
+    elif isinstance(input, torch.Tensor):
+        return input.dtype
+    return RuntimeError("input to _none_or_dtype() must be None or torch.Tensor")
