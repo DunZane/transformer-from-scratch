@@ -39,8 +39,7 @@ def _no_grad_uniform_(tensor, a, b, generator=None):
 
 def _no_grad_fill_(tensor, val):
     with torch.no_grad():
-        return
-    pass
+        return torch.fill(tensor,val)
 
 
 def constant_(tensor: Tensor, val: float) -> Tensor:
@@ -56,7 +55,7 @@ def constant_(tensor: Tensor, val: float) -> Tensor:
     """
     if torch.overrides.has_torch_function_variadic(tensor):
         return torch.overrides.handle_torch_function(
-            constant_, (tensor), tensor=tensor, val=val
+            constant_, (tensor,), tensor=tensor, val=val
         )
     return _no_grad_fill_(tensor, val)
 
