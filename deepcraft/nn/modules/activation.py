@@ -11,7 +11,7 @@ from torch import nn
 from torch.nn import Parameter
 from torch.nn.modules.linear import NonDynamicallyQuantizableLinear
 
-from deepcraft.init import xavier_uniform_, constant_
+from deepcraft.nn.init import xavier_uniform_, constant_
 
 
 class MultiheadAttention(nn.Module):
